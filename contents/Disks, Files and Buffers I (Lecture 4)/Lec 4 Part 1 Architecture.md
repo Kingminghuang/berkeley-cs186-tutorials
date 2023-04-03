@@ -1,0 +1,16 @@
+# [Architecture](https://www.youtube.com/watch?v=GCN5aw1LyoE)
+
+## Introduction
+In this tutorial, we will discuss the architecture of a database system. Generally, a database system comprises of a client and a server. SQL is typed in at the client end, which could be a web or application client. The server end is the database management system. The architecture of a database management system is organized in layers, with each layer abstracting the layer below it. This design keeps the complexity of the system at a minimum. The optimizer makes assumptions about disk speeds, and these assumptions can be reasoned about across these layers, even though they're not explicitly in the API. In the following lectures, we will explore the different sections of a database system in detail.
+## Query Parsing and Optimization
+When a SQL query is typed in at the client end, it is sent to the query parsing and optimization module at the server end. This module's job is to check the query's legality, parse it, and translate it into a relational query plan that the system can execute. The relational query plan consists of relational operators, which are individual algorithms that execute a data flow that operates on records and files to generate output.
+## Files and Index Management
+The files and index management module are responsible for organizing tables and records as groups of pages in a logical file. A file contains pages that hold two tables full of records. This module is situated below the relational-operators layer and above the buffer management layer.
+## Buffer Management
+The buffer management layer provides the illusion that the system operates in memory rather than dealing with disks. It maps disk blocks from the disk drive into the memory of the system, making it seem like the data is stored in memory. This layer is situated below the files and index management layer and above the disk space management layer.
+## Disk Space Management
+The disk space management module is located at the very bottom of the database management system. It translates page requests from the buffer manager into physical bytes on one or more devices like magnetic disks or solid-state disks.
+## Concurrency Control and Recovery
+Two cross-cutting modules related to storage and memory management exist in a database management system: concurrency control and recovery. Concurrency control allows multiple users to use the database system simultaneously without affecting each other's data. Recovery ensures that if the database crashes, important data can be recovered, and the system can be brought back up and running.
+## Conclusion
+Relational databases are examples of good system design. They can grow to millions of lines of code and take a decade to mature. The architecture of a database system should be clean and organized. In the next lectures, we will discuss each of these modules for single-user databases and then look at concurrency control and recovery. Our next topic is disk space management, followed by files and index management.
